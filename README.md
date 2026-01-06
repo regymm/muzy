@@ -1,27 +1,50 @@
-# Muzy-2
-2-layer FPGA development board with ZYNQ 7010/7020 400-pin BGA.  
-Pad size was shrinked due to clearance requirements -- JLCPCB 2-layer 5 mil line width, 0.5/0.3 mm via. 
+# MUZY
 
-## Working
+AMD/Xilinx ZYNQ 7010/7020 SoC as generic FPGA development board, no DDR -- cheaper than your Artix 7! 
 
-PL(FPGA fabric) JTAG & bitstream downloading, SDRAM tested up to 110 MHz, 640x480 VGA, BTN/LED, PMOD
+## MUZY-2
 
-Loading PS(ARM cores) program via JTAG in Xilinx SDK, PS UART, PS SD card, PS EMIO
+[BGA on 2-layers? It's possible and verified!](muzy2.md)
 
-## Not Working
+## MUZY-4
 
-PL SD card -- probably due to no pullup resistors! A PMOD SD card module works.
+[Now on sale!]()
 
-PS load bitstream from SD card -- it seems impossible due to no big enough block of memory. Either SPI flash or DDR is required. 
+**Hardware**
 
-JTAG at 30 MHz maybe not stable
+- Zynq 7020 (xc7z020-clg400-1)
 
-## Gallery
+- RP2040-based JTAG blaster, with DirtyJTAG / XVC Pico firmware, working with OpenFPGALoader and Vivado
 
-![](doc/muzy-2-3d.png)
+- Dual SD Card PS + PL
 
-Running with [self-designed JTAG/UART bridge](https://github.com/regymm/ymmcu-ft2232)
+- Dual Video Out HDMI + VGA 
 
-![](doc/muzy-2.jpg)
+- Dual USB Host
 
-<!-- Minimum configuration with external power supply and just a few resistors -- back side empty! -->
+- Dual PMOD
+
+- 2 switches, 2 buttons, 4 LEDs
+
+- 256 Mb (32 MB) SDRAM
+
+Should be perfect for SoC development & work as a handhold FPGA computer! 
+
+Open-source [Zynq](https://github.com/regymm/GenZ)/[FPGA](https://github.com/OpenXC7) toolchains recommended! 
+
+**Software**
+
+Tested: [Zynq PS No-DDR SD Boot](https://github.com/regymm/GenZ/tree/master/examples/6-noddr-sdboot), [RISC-V SoC Linux booting from SD Card](https://github.com/regymm/quasiSoC/tree/master/rtl/hart_transplant/openla500), Dual video output
+
+**Gallery**
+
+Video: [Linux UART with dual graphics test output](https://www.youtube.com/shorts/H9cZ7YbqNOI)
+
+Pictures: 
+
+![](doc/muzy4-1.png)
+
+![](doc/muzy4-2.png)
+
+![](doc/muzy4-3.png)
+
